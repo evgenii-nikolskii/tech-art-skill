@@ -57,8 +57,10 @@ Record `null` and `missing` findings in the report and continue the full analysi
 
 ## Problem categorization
 
-After checking dependency integrity, the skill must determine the relevant technical-art problem category and consult the corresponding knowledge. These knowledge modules are maintained separately and should be expanded from the user's technical-art experience.
+After checking dependency integrity, the skill must determine the relevant technical-art problem category and consult the corresponding knowledge module from `knowledge/`. Knowledge modules are maintained separately and should be expanded from the user's technical-art experience.
+
+For texture-map tasks, use `knowledge/texture-maps.md`. If the module is empty or does not yet provide relevant guidance, state that the knowledge is not yet populated and continue using only the general contract. Do not invent domain-specific rules and present them as repository knowledge.
 
 ## Extension point
 
-Add concrete technical-art workflows and knowledge modules here once the target use cases are agreed.
+Add concrete technical-art workflows and knowledge modules here once the target use cases are agreed. Keep each module focused on one technical-art category.

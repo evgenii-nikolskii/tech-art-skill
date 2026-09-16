@@ -17,10 +17,12 @@ Use this skill for technical-art workflows defined in the repository's universal
 
 1. Read `core/instructions.md` from the repository when the task requires the shared contract.
 2. Identify the concrete technical-art workflow and its required evidence.
-3. Use the narrowest applicable tools and resources.
-4. State assumptions when the workflow is not fully specified.
-5. Validate the result against the workflow's quality criteria before responding.
+3. Identify and read the relevant module from the repository's `knowledge/` directory. For texture-map tasks, read `knowledge/texture-maps.md`.
+4. If the relevant module is empty, report the coverage gap and rely on the general contract without fabricating repository-specific knowledge.
+5. Use the narrowest applicable tools and resources.
+6. State assumptions when the workflow is not fully specified.
+7. Validate the result against the workflow's quality criteria before responding.
 
-## Current limitation
+## Knowledge modules
 
-The repository currently contains the architecture scaffold only. Domain-specific instructions must be added before this package can reliably execute a particular technical-art workflow.
+Knowledge modules are stored in the repository's `knowledge/` directory and are selected by technical-art problem category. The texture-map module exists as a placeholder and is intentionally empty until its content is written.

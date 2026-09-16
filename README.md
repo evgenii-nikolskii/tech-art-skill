@@ -9,12 +9,13 @@ The goal is to make that experience useful through an AI-assisted workflow that 
 ## Repository structure
 
 - `core/` — platform-independent behavior and decision rules.
+- `knowledge/` — category-specific technical-art knowledge modules.
 - `adapters/` — guidance for integrating the core with a specific AI platform.
 - `skills/tech-art-skill/` — Codex-installable package.
 
 ## Current status
 
-The repository is an initial scaffold. Domain-specific workflows and accumulated technical-art knowledge will be added iteratively.
+The repository is an initial scaffold. Domain-specific workflows and accumulated technical-art knowledge will be added iteratively. The first knowledge placeholder is `knowledge/texture-maps.md`.
 
 ## Codex installation
 
