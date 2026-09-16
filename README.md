@@ -1,8 +1,12 @@
 # Tech Art Skill
 
-Universal instruction core for AI assistants, with platform-specific adapters.
+A skill for AI assistants that helps Technical Artists and anyone who needs support with technical art in game development.
 
-## Structure
+This repository will capture and structure years of hands-on experience as a Technical Artist: practical workflows, production knowledge, problem-solving patterns, and guidance for bridging art and engineering.
+
+The goal is to make that experience useful through an AI-assisted workflow that can help with real technical-art questions, investigations, implementation tasks, and decisions across game development projects.
+
+## Repository structure
 
 - `core/` — platform-independent behavior and decision rules.
 - `adapters/` — guidance for integrating the core with a specific AI platform.
@@ -10,7 +14,7 @@ Universal instruction core for AI assistants, with platform-specific adapters.
 
 ## Current status
 
-Initial repository scaffold. Domain-specific workflows will be added after the target technical-art use cases are defined.
+The repository is an initial scaffold. Domain-specific workflows and accumulated technical-art knowledge will be added iteratively.
 
 ## Codex installation
 
