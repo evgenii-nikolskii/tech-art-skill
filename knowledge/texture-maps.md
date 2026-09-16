@@ -6,6 +6,30 @@ They can be used as information storage.
 
 They are most often used in combination with the UV(W) coordinates of model geometry.
 
+Any other information can be encoded as grayscale pixel values. A texture map is not limited to visible color or surface properties; it is a raster container for data. With an agreed encoding, range, precision, channel layout, and decoding process, it can carry almost anything the consuming material or system needs.
+
+Vertex Animation Textures (VAT) are a practical example: animation data such as vertex positions, normals, or other per-vertex attributes can be encoded into textures and read by a shader over time. The texture is not “an animation” by itself—it is an information carrier, and the shader gives the stored values meaning.
+
+Understanding texture maps as general-purpose information carriers is an important step toward using them effectively in technical art.
+
+A color pixel expands this idea from a single scalar to a three-component vector. Its red, green, and blue channels can be read as `Vector3` values, which makes vector addition, subtraction, multiplication, interpolation, normalization, and other mathematical operations available in the shader. The channels do not have to represent a visible color; they can represent any three related values defined by the data contract.
+
+Lookup tables (LUTs) are a practical example. A LUT texture stores a mapping from an input value to an output value, allowing a shader to retrieve a precomputed result instead of performing the full calculation at runtime. A color-grading LUT maps input colors to corrected output colors; a 3D LUT is commonly flattened into a 2D texture for storage and sampling. This demonstrates how a color texture can function as a mathematical data structure rather than an image intended only for display.
+
+### Swizzling
+
+Swizzling is a standard mathematical operation for selecting, reordering, duplicating, or replacing vector components. Shader languages commonly expose it through component names such as `r`, `g`, `b`, `a` or `x`, `y`, `z`, `w`.
+
+For example, a sampled value can be transformed by:
+
+- passing only one channel, such as `texture.r`;
+- reordering channels, such as `texture.bgr`;
+- duplicating a channel, such as `texture.rrr`;
+- filling a component with a constant, such as `float4(texture.rgb, 1)` or `float3(texture.rg, 0)`;
+- combining channels from different values into a new vector.
+
+This simple operation solves a wide range of technical-art problems: adapting one texture layout to another shader input, supplying a required `0` or `1`, unpacking or repacking data, creating masks, and constructing vectors for further mathematical processing. Swizzling changes how the stored information is read; it does not change the texture data itself.
+
 ## PBR Texture Maps
 
 ### Albedo vs. Diffuse
