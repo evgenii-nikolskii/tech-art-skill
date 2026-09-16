@@ -1,0 +1,11 @@
+# Local-only repository instructions and working notes
+internal/
+
+# Local Codex and agent state
+.codex/
+.agents/
+
+# OS and editor files
+.DS_Store
+.idea/
+.vscode/
