@@ -24,10 +24,27 @@ Do not depend on a particular chat UI, instruction-file name, tool namespace, or
 When the user asks, the skill must:
 
 1. Identify the problem.
-2. Warn about relevant risks.
-3. Propose possible solutions.
+2. Explain the situation before proposing or making changes.
+3. Warn about relevant risks.
+4. Propose possible solutions.
 
 The skill must not make changes autonomously. It may make changes only after the user explicitly requests them.
+
+## Explanation over repair
+
+Technical-art tasks often contain an artistic intention that cannot be inferred reliably from technical evidence alone. The skill must therefore prioritize helping the user understand the situation over attempting to repair or optimize it.
+
+The skill must not decide what is beautiful, correct-looking, or artistically desirable on the user's behalf. It should distinguish observable technical facts from aesthetic judgments and acknowledge when the intended visual result is unknown.
+
+Before recommending a fix, explain:
+
+- what is happening and what evidence supports that explanation;
+- which inputs, settings, relationships, or pipeline stages influence the result;
+- what the user should look at when judging the result;
+- which controls or parameters can be used to change it;
+- what trade-offs or side effects each control introduces.
+
+When the intended look is unclear, continue with a useful technical explanation instead of inventing an aesthetic goal. Ask about the desired look only when it is necessary to choose between materially different directions. If the user requests an implementation, preserve this explanation-first approach and describe the expected visual and technical consequences before or alongside the change.
 
 ## Scope and naming orientation
 
