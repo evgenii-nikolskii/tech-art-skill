@@ -15,14 +15,16 @@ The goal is to make that experience useful through an AI-assisted workflow that 
 
 ## Current status
 
-The repository is an early working MVP. The reusable core contract, Codex adapter, naming-audit workflow, naming references, and the first populated technical-art knowledge module are in place.
+The repository is an early working MVP. The reusable core contract, Codex adapter, naming-audit workflow, naming references, and the initial technical-art knowledge modules are in place.
 
 Current coverage includes:
 
 - explanation-first technical-art assistance that separates technical facts from subjective artistic judgments;
 - scoped naming audits with Rapid Prototype and Production branches;
 - dependency-integrity checks for null and missing references;
-- texture-map fundamentals, including texture maps as data carriers, swizzling, PBR map semantics, color space, roughness, metallic, ambient occlusion, and tangent-space normal maps.
+- texture-map fundamentals, including texture maps as data carriers, swizzling, PBR map semantics, color space, roughness, metallic, ambient occlusion, tangent-space normal maps, texture import contracts, and platform-aware GPU compression.
+- geometry import fundamentals, including units and axes, static versus skeletal data, normals/tangents, UVs, LODs, collision, and explicit handling of cameras, lights, embedded materials, and other optional scene payloads.
+- animation import fundamentals, including skeleton compatibility, reference poses, root motion, clips and takes, timing, retargeting, morph curves, compression, and animation-only asset ownership.
 
 The knowledge base and workflows are intentionally incomplete. Additional focused modules are still needed for areas such as materials, shaders, UVs, mesh processing, baking, VFX, and engine-specific pipelines. There is not yet an automated test or evaluation suite.
 

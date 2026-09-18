@@ -107,3 +107,61 @@ The main difference between common DirectX and OpenGL tangent-space normal-map c
 - **DirectX:** the green channel conventionally represents `-Y` relative to the OpenGL convention.
 
 When converting a normal map between the conventions, invert the green channel. Do not flip the texture's UV Y coordinate as a substitute; that changes texture addressing rather than the encoded normal direction. Always verify the result on the target mesh under directional lighting, because the required convention is determined by the baker and the target renderer together.
+
+## Texture Import
+
+Texture import settings are part of the map's data contract. The same image file can be correct or incorrect depending on how the engine interprets its channels, color space, mip levels, alpha, and compression.
+
+Before importing, classify the map:
+
+- **Visual color:** albedo/base color and the color component of emission. Enable sRGB decoding.
+- **Technical data:** normal, roughness, metallic, AO, height, opacity, masks, packed maps, LUTs, and VAT data. Disable sRGB decoding.
+- **HDR data:** environment, reflection, and HDR emission maps. Preserve the required HDR range and use a format that supports it.
+
+Recommended import checks:
+
+1. Confirm the texture type and intended channel layout. A packed map must document which property is in each channel, including whether a channel is unused and should be filled with `0` or `1`.
+2. Enable the engine's normal-map import/decode path for tangent-space normals. Do not treat a normal map as ordinary color data or apply artistic color correction to it.
+3. Preserve alpha semantics. Straight alpha, premultiplied alpha, opacity masks, and alpha-tested coverage are different contracts; the shader and importer must agree.
+4. Generate mipmaps for world-space surfaces and sampling across distance unless the texture is a UI element, a lookup/data texture with deliberate no-mip sampling, or another explicitly controlled exception. Validate alpha-tested assets at mip levels, not only at full resolution.
+5. Set wrap and filter modes according to use: repeat for tiled materials, clamp for atlases/LUTs, and point filtering for deliberately discrete data. Avoid filtering across unrelated atlas regions or packed data boundaries.
+6. Set maximum size per platform and verify the imported result rather than assuming the source resolution is resident on the GPU. Non-power-of-two textures and block-compressed formats may introduce platform-specific padding or restrictions.
+7. Inspect the actual GPU format and memory footprint in the target build. File size is not the same as runtime texture memory.
+
+For packed maps, disable sRGB for the whole texture even when one channel originated from a color-looking source. If a shader needs a different layout, use explicit swizzling or repacking; do not rely on an editor preview to communicate channel meaning.
+
+## GPU Compression by Platform
+
+Choose compression for the GPU family and the map's error sensitivity, not only for download size. Block compression is fixed-rate: a smaller file does not automatically mean a better result, and a visually acceptable albedo setting can be destructive for a normal or mask map.
+
+| Target | Preferred families | Practical starting point | Important constraints |
+| --- | --- | --- | --- |
+| Windows/Linux/macOS with modern desktop GPUs | BCn | BC7 for high-quality LDR RGBA, BC1 for opaque RGB, BC4 for one-channel masks, BC5 for two-channel normals, BC6H for HDR | BC7/BC6H need modern GPU support. Use BC3/DXT5 as a compatibility fallback, not as the default for every map. |
+| PlayStation/Xbox and other desktop-class consoles | Platform-native BC-family formats where supported | Use the console SDK/profile and the same semantic split as desktop: BC7/BC5/BC4/BC6H where available | Verify the exact SDK and GPU profile; do not ship a PC format assumption without a console build capture. |
+| Modern iOS/tvOS and modern Android | ASTC | 4x4 for high sensitivity, 6x6 as a balanced default, 8x8 or larger for less sensitive maps | ASTC block size changes quality and bitrate. Confirm the minimum device generation; unsupported formats may be decompressed at runtime. |
+| Android with broad OpenGL ES 3 coverage | ETC2/EAC | ETC2 RGB/RGBA for color, EAC R/RG for single/two-channel data | ETC1 has no native alpha. Use ETC1 only with a deliberate split-alpha path or legacy fallback. |
+| Older Apple devices or legacy mobile targets | PVRTC or the platform's required fallback | PVRTC 4 bpp before 2 bpp when quality matters | PVRTC has stricter shape/quality constraints and is a legacy compatibility choice; test square/non-square assets and alpha carefully. |
+| WebGL/WebGPU | Formats exposed by the browser/device | Provide capability-based variants such as BC, ETC2, or ASTC where supported; keep a defined uncompressed fallback | Browser support is not uniform. Select the format at runtime/build time instead of assuming one compressed format for all clients. |
+
+For the most common map types:
+
+- **Base color/albedo:** BC7 or ASTC 6x6 are good quality-oriented starting points. BC1 is suitable for opaque RGB when the quality budget is lower. Keep it sRGB.
+- **Tangent-space normal:** BC5 or EAC/RG two-channel formats are preferred when the shader reconstructs Z. ASTC 4x4–6x6 is a common mobile choice. Keep it linear and verify the green-channel convention after compression.
+- **Roughness, metallic, AO, and masks:** use BC4/EAC R for one channel, BC5/EAC RG for two channels, or a higher-quality RGBA format for packed channels. Keep them linear. Avoid using a color-oriented low-quality setting merely because the preview looks acceptable.
+- **HDR environment or emission:** use BC6H on supported desktop targets and ASTC HDR where the target device/API supports it; otherwise use an appropriate higher-precision fallback and measure memory.
+- **Alpha-tested foliage and sprites:** evaluate alpha coverage through mipmaps and compression. If the alpha edge is important, increase quality or use a format with adequate alpha precision rather than hiding artifacts with a sharpen or threshold change.
+
+Crunch or similar secondary compression reduces package/download size; it is not a GPU texture format and does not reduce the final resident GPU memory by itself. The runtime still needs to decode the texture into a supported GPU format.
+
+### Compression Validation
+
+For every platform profile, validate at least:
+
+- the imported GPU format and runtime memory size;
+- albedo gradients and alpha edges at native and mip levels;
+- normal-map shading under a moving directional light;
+- roughness response on both smooth and rough materials;
+- packed-channel values in a debug shader or numeric inspector;
+- fallback behavior on the oldest supported device/API.
+
+If a map carries gameplay, deformation, lookup, or other non-visual data, validate decoded numeric error—not just the texture preview. The acceptable compression choice depends on how that error affects the consuming shader or system.
