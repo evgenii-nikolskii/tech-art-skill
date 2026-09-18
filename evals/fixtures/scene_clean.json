@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "metadata": {
+    "scene": "fixtures/scene_clean",
+    "engine": "unity",
+    "render_pipeline": "URP",
+    "platform": "desktop",
+    "revision": "fixture-1"
+  },
+  "settings": {
+    "render_pipeline": "URP",
+    "srp_batcher_enabled": true,
+    "allow_scene_payloads": false,
+    "thresholds": {
+      "instancing_min_instances": 10,
+      "srp_min_renderers": 20,
+      "particle_count": 500,
+      "particle_screen_coverage": 0.15
+    }
+  },
+  "assets": {
+    "meshes": ["SM_Rock"],
+    "materials": ["M_Rock"],
+    "shaders": ["Universal Render Pipeline/Lit"],
+    "textures": []
+  },
+  "objects": [
+    {"name": "Rock_01", "path": "Environment/Rock_01", "type": "MeshRenderer", "mesh": "SM_Rock", "material": "M_Rock", "shader": "Universal Render Pipeline/Lit", "gpu_instancing_supported": true, "gpu_instancing_enabled": true, "srp_batcher_compatible": true},
+    {"name": "Rock_02", "path": "Environment/Rock_02", "type": "MeshRenderer", "mesh": "SM_Rock", "material": "M_Rock", "shader": "Universal Render Pipeline/Lit", "gpu_instancing_supported": true, "gpu_instancing_enabled": true, "srp_batcher_compatible": true},
+    {"name": "Dust", "path": "VFX/Dust", "type": "ParticleSystem", "particle_count": 80, "screen_coverage": 0.03, "overlap_layers": 1, "transparent": true}
+  ]
+}

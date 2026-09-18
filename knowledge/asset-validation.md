@@ -42,3 +42,16 @@ Validation should be deterministic and safe to run repeatedly. Separate read-onl
 ## Report
 
 Return a summary of pass/fail/warning counts, then prioritized findings. Include unknowns and skipped checks caused by missing tools or dependencies. Distinguish confirmed contract violations from likely performance risks and subjective visual review items.
+
+## Executable Snapshot Baseline
+
+The repository includes a platform-neutral baseline validator at `tools/scene_validator.py`. Engine integrations should export a normalized scene snapshot with:
+
+- `metadata` for scene, engine, pipeline, platform, and revision;
+- `settings` for render-pipeline flags and validation thresholds;
+- `assets` registries for meshes, materials, shaders, textures, animations, and controllers;
+- `objects` with stable paths, types, references, render compatibility, and particle metrics.
+
+The baseline currently detects missing references, unexpected imported cameras/lights, repeated mesh/material groups that are candidates for GPU Instancing, SRP Batcher compatibility risks, and transparent particle overdraw risks. It returns structured findings with severity, evidence, and recommendation, and never modifies source content.
+
+Use the JSON fixtures and unit tests under `evals/fixtures/` and `tests/` as the contract for future Unity and Unreal adapters.

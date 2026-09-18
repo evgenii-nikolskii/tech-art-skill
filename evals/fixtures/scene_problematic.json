@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "metadata": {
+    "scene": "fixtures/scene_problematic",
+    "engine": "unity",
+    "render_pipeline": "URP",
+    "platform": "desktop",
+    "revision": "fixture-1"
+  },
+  "settings": {
+    "render_pipeline": "URP",
+    "srp_batcher_enabled": true,
+    "allow_scene_payloads": false,
+    "thresholds": {
+      "instancing_min_instances": 5,
+      "srp_min_renderers": 6,
+      "particle_count": 500,
+      "particle_screen_coverage": 0.15
+    }
+  },
+  "assets": {
+    "meshes": ["SM_Crate", "SM_PropA", "SM_PropB", "SM_PropC", "SM_PropD", "SM_PropE", "SM_PropF"],
+    "materials": ["M_Crate"],
+    "shaders": ["Universal Render Pipeline/Lit"],
+    "textures": []
+  },
+  "objects": [
+    {"name": "Crate_01", "path": "Environment/Crate_01", "type": "MeshRenderer", "mesh": "SM_Crate", "material": "M_Crate", "shader": "Universal Render Pipeline/Lit", "gpu_instancing_supported": true, "gpu_instancing_enabled": false, "srp_batcher_compatible": false},
+    {"name": "Crate_02", "path": "Environment/Crate_02", "type": "MeshRenderer", "mesh": "SM_Crate", "material": "M_Crate", "shader": "Universal Render Pipeline/Lit", "gpu_instancing_supported": true, "gpu_instancing_enabled": false, "srp_batcher_compatible": false},
+    {"name": "Crate_03", "path": "Environment/Crate_03", "type": "MeshRenderer", "mesh": "SM_Crate", "material": "M_Crate", "shader": "Universal Render Pipeline/Lit", "gpu_instancing_supported": true, "gpu_instancing_enabled": false, "srp_batcher_compatible": false},
+    {"name": "Crate_04", "path": "Environment/Crate_04", "type": "MeshRenderer", "mesh": "SM_Crate", "material": "M_Crate", "shader": "Universal Render Pipeline/Lit", "gpu_instancing_supported": true, "gpu_instancing_enabled": false, "srp_batcher_compatible": false},
+    {"name": "Crate_05", "path": "Environment/Crate_05", "type": "MeshRenderer", "mesh": "SM_Crate", "material": "M_Crate", "shader": "Universal Render Pipeline/Lit", "gpu_instancing_supported": true, "gpu_instancing_enabled": false, "srp_batcher_compatible": false},
+    {"name": "Crate_06", "path": "Environment/Crate_06", "type": "MeshRenderer", "mesh": "SM_Crate", "material": "M_Crate", "shader": "Universal Render Pipeline/Lit", "gpu_instancing_supported": true, "gpu_instancing_enabled": false, "srp_batcher_compatible": false},
+    {"name": "Prop_A", "path": "Props/Prop_A", "type": "MeshRenderer", "mesh": "SM_PropA", "material": "M_Crate", "shader": "Universal Render Pipeline/Lit", "gpu_instancing_supported": false, "gpu_instancing_enabled": false, "srp_batcher_compatible": false},
+    {"name": "Prop_B", "path": "Props/Prop_B", "type": "MeshRenderer", "mesh": "SM_PropB", "material": "M_Crate", "shader": "Universal Render Pipeline/Lit", "gpu_instancing_supported": false, "gpu_instancing_enabled": false, "srp_batcher_compatible": false},
+    {"name": "Prop_C", "path": "Props/Prop_C", "type": "MeshRenderer", "mesh": "SM_PropC", "material": "M_Crate", "shader": "Universal Render Pipeline/Lit", "gpu_instancing_supported": false, "gpu_instancing_enabled": false, "srp_batcher_compatible": false},
+    {"name": "Prop_D", "path": "Props/Prop_D", "type": "MeshRenderer", "mesh": "SM_PropD", "material": "M_Crate", "shader": "Universal Render Pipeline/Lit", "gpu_instancing_supported": false, "gpu_instancing_enabled": false, "srp_batcher_compatible": false},
+    {"name": "Prop_E", "path": "Props/Prop_E", "type": "MeshRenderer", "mesh": "SM_PropE", "material": "M_Crate", "shader": "Universal Render Pipeline/Lit", "gpu_instancing_supported": false, "gpu_instancing_enabled": false, "srp_batcher_compatible": false},
+    {"name": "Broken_Prop", "path": "Props/Broken_Prop", "type": "MeshRenderer", "mesh": "SM_Missing", "material": null, "shader": "Universal Render Pipeline/Lit", "gpu_instancing_supported": false, "gpu_instancing_enabled": false, "srp_batcher_compatible": false},
+    {"name": "Smoke_Field", "path": "VFX/Smoke_Field", "type": "ParticleSystem", "particle_count": 1200, "screen_coverage": 0.35, "overlap_layers": 4, "transparent": true},
+    {"name": "ImportedCamera", "path": "Imported/Camera", "type": "Camera", "imported_from_source": true},
+    {"name": "ImportedLight", "path": "Imported/Light", "type": "Light", "imported_from_source": true}
+  ]
+}

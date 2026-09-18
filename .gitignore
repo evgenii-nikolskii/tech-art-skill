@@ -9,3 +9,7 @@ internal/
 .DS_Store
 .idea/
 .vscode/
+
+# Python generated files
+__pycache__/
+*.py[cod]
