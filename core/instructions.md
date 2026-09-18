@@ -76,7 +76,7 @@ Record `null` and `missing` findings in the report and continue the full analysi
 
 After checking dependency integrity, the skill must determine the relevant technical-art problem category and consult the corresponding knowledge module from `knowledge/`. Knowledge modules are maintained separately and should be expanded from the user's technical-art experience.
 
-For texture-map tasks, use `knowledge/texture-maps.md`. For model and geometry import tasks, use `knowledge/geometry-import.md`. For animation import tasks, use `knowledge/animation-import.md`. If the relevant module is empty or does not yet provide relevant guidance, state that the knowledge is not yet populated and continue using only the general contract. Do not invent domain-specific rules and present them as repository knowledge.
+For texture-map tasks, use `knowledge/texture-maps.md`. For model and geometry import tasks, use `knowledge/geometry-import.md`. For animation import tasks, use `knowledge/animation-import.md`. For scene audit tasks, use `knowledge/scene-audit.md`. If the relevant module is empty or does not yet provide relevant guidance, state that the knowledge is not yet populated and continue using only the general contract. Do not invent domain-specific rules and present them as repository knowledge.
 
 ## Extension point
 

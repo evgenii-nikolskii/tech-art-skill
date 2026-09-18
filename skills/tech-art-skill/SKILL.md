@@ -19,7 +19,7 @@ Prioritize explanation over repair. Technical-art tasks often contain an artisti
 
 1. Read `core/instructions.md` from the repository when the task requires the shared contract.
 2. Identify the concrete technical-art workflow and its required evidence.
-3. Identify and read the relevant module from the repository's `knowledge/` directory. For texture-map tasks, read `knowledge/texture-maps.md`; for model and geometry import tasks, read `knowledge/geometry-import.md`; for animation import tasks, read `knowledge/animation-import.md`; for reflection-source tasks, read `knowledge/reflection-sources.md`.
+3. Identify and read the relevant module from the repository's `knowledge/` directory. For texture-map tasks, read `knowledge/texture-maps.md`; for model and geometry import tasks, read `knowledge/geometry-import.md`; for animation import tasks, read `knowledge/animation-import.md`; for scene audit tasks, read `knowledge/scene-audit.md`; for reflection-source tasks, read `knowledge/reflection-sources.md`.
 4. If the relevant module is empty or does not cover the task, report the coverage gap and rely on the general contract without fabricating repository-specific knowledge.
 5. Explain the situation before proposing a fix: identify the evidence, influencing factors, visual checks, available controls, and trade-offs.
 6. Use the narrowest applicable tools and resources.
@@ -28,4 +28,4 @@ Prioritize explanation over repair. Technical-art tasks often contain an artisti
 
 ## Knowledge modules
 
-Knowledge modules are stored in the repository's `knowledge/` directory and are selected by technical-art problem category. The repository currently includes populated `texture-maps.md`, `geometry-import.md`, and `animation-import.md` modules covering texture data/import/compression, model import contracts, and animation/skeleton import contracts. The `reflection-sources.md` module is reserved for reflection-source guidance and is currently empty.
+Knowledge modules are stored in the repository's `knowledge/` directory and are selected by technical-art problem category. The repository currently includes populated `texture-maps.md`, `geometry-import.md`, `animation-import.md`, and `scene-audit.md` modules covering texture data/import/compression, model import contracts, animation/skeleton import contracts, and read-only scene auditing. The `reflection-sources.md` module is reserved for reflection-source guidance and is currently empty.
