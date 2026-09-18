@@ -25,9 +25,21 @@ Current coverage includes:
 - texture-map fundamentals, including texture maps as data carriers, swizzling, PBR map semantics, color space, roughness, metallic, ambient occlusion, tangent-space normal maps, texture import contracts, and platform-aware GPU compression.
 - geometry import fundamentals, including units and axes, static versus skeletal data, normals/tangents, UVs, LODs, collision, and explicit handling of cameras, lights, embedded materials, and other optional scene payloads.
 - animation import fundamentals, including skeleton compatibility, reference poses, root motion, clips and takes, timing, retargeting, morph curves, compression, and animation-only asset ownership.
-- scene-audit fundamentals, including scoped inventory, dependency integrity, hierarchy and ownership, cameras and lighting, render assets, geometry and visibility, GPU Instancing, SRP Batcher, physics/navigation, particle/VFX overdraw, performance evidence, and prioritized findings.
+- scene-audit fundamentals, including scoped inventory, dependency integrity, hierarchy and ownership, cameras and lighting, render assets, geometry and visibility, GPU Instancing, SRP Batcher, physics/navigation, particle/VFX overdraw, performance evidence, and prioritized findings;
+- materials/shaders, UVs, baking/lightmaps, VFX/particles, LOD/culling/streaming, reflection sources, mesh processing, lighting/exposure, and repeatable asset validation.
 
-The knowledge base and workflows are intentionally incomplete. Additional focused modules are still needed for areas such as materials, shaders, UVs, mesh processing, baking, VFX, and engine-specific pipelines. There is not yet an automated test or evaluation suite.
+The knowledge base and workflows are intentionally incomplete. Additional depth, examples, and engine-specific pipelines are still needed. There is not yet an automated test or evaluation suite.
+
+## Skill assessment
+
+The repository is currently a strong knowledge-first MVP:
+
+- **Coverage:** 13 populated technical-art modules now span texture maps, geometry and animation import, scene auditing, materials/shaders, UVs, baking/lightmaps, VFX, LOD/culling/streaming, reflection sources, mesh processing, lighting/exposure, and asset validation.
+- **Workflow quality:** the core contract consistently requires scoped analysis, dependency checks, explanation before repair, explicit assumptions, visual validation, and separation of technical facts from artistic judgment.
+- **Practical value:** the modules contain production-oriented decision rules, risk warnings, platform considerations, and validation checklists rather than only terminology.
+- **Current limitation:** the knowledge is guidance, not an executable validation system. There are no automated evals, engine fixtures, sample audit reports, or CI checks proving that recommendations work in a specific Unity, Unreal, or custom pipeline.
+
+The skill is ready for structured technical-art analysis, investigation plans, import reviews, and audit reports. The next maturity step is to add representative fixtures and engine-specific adapters that can turn the documented checks into repeatable automated validation.
 
 ## Codex installation
 
