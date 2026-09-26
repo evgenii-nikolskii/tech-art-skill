@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "metadata": {"scene": "fixtures/asset_validation_v2", "engine": "unity", "render_pipeline": "URP", "platform": "mobile", "revision": "fixture-2"},
+  "settings": {
+    "render_pipeline": "URP", "srp_batcher_enabled": false, "allow_scene_payloads": false,
+    "naming_mode": "production",
+    "thresholds": {"instancing_min_instances": 10},
+    "budgets": {"gpu_ms": 16.6, "draw_calls": 150}
+  },
+  "assets": {
+    "meshes": [{"path": "Assets/Environment/SM_Rock", "name": "SM_Rock", "triangles": 1400, "triangle_budget": 1000, "lightmap_uv_required": true, "has_lightmap_uv": false}],
+    "materials": ["Assets/Materials/M_Rock"], "shaders": [],
+    "textures": [{"path": "Assets/Textures/T_Rock_Normal", "texture_type": "normal", "srgb": true, "width": 2048, "max_size": 1024}],
+    "animations": [], "controllers": []
+  },
+  "objects": [
+    {"name": "Cube.001", "path": "Props/Cube.001", "type": "MeshRenderer", "mesh": "Assets/Environment/SM_Rock", "material": "Assets/Materials/M_Rock"},
+    {"name": "Rock_Main", "path": "Props/Rock_Main", "type": "MeshRenderer", "mesh": null}
+  ],
+  "performance": {"gpu_ms": 19.2, "draw_calls": 122},
+  "performance_evidence": {"source": "Profiler GPU module", "device": "fixture mobile", "build": "Development", "capture": "representative gameplay camera"}
+}

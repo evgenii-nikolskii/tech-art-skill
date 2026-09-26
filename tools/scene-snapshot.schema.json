@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tech-art:scene-snapshot:schema:2",
+  "title": "Tech Art Scene Snapshot v2",
+  "type": "object",
+  "required": ["schema_version", "metadata", "settings", "assets", "objects"],
+  "$defs": {
+    "asset": {
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        { "type": "object", "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "path": { "type": "string" }, "name": { "type": "string" },
+          "texture_type": { "type": "string" }, "srgb": { "type": "boolean" },
+          "width": { "type": "integer", "minimum": 0 }, "height": { "type": "integer", "minimum": 0 },
+          "max_size": { "type": "integer", "minimum": 0 }, "triangles": { "type": "integer", "minimum": 0 },
+          "triangle_budget": { "type": "integer", "minimum": 0 },
+          "has_lightmap_uv": { "type": "boolean" }, "lightmap_uv_required": { "type": "boolean" }
+        }, "anyOf": [{ "required": ["id"] }, { "required": ["path"] }, { "required": ["name"] }],
+        "additionalProperties": true }
+      ]
+    },
+    "reference": {
+      "oneOf": [ { "type": "string" }, { "type": "null" },
+        { "type": "array", "items": { "oneOf": [{ "type": "string" }, { "type": "null" }] } } ]
+    }
+  },
+  "properties": {
+    "schema_version": { "const": 2 },
+    "metadata": { "type": "object", "properties": {
+      "scene": { "type": "string" }, "engine": { "type": "string" },
+      "render_pipeline": { "type": "string" }, "platform": { "type": "string" },
+      "revision": { "type": "string" }
+    }, "additionalProperties": true },
+    "settings": { "type": "object", "properties": {
+      "render_pipeline": { "type": "string" }, "srp_batcher_enabled": { "type": "boolean" },
+      "allow_scene_payloads": { "type": "boolean" },
+      "naming_mode": { "enum": ["off", "prototype", "production"] },
+      "naming_convention": { "type": "string" },
+      "naming_regex": { "type": "string" },
+      "thresholds": { "type": "object", "additionalProperties": { "type": "number", "minimum": 0 } },
+      "budgets": { "type": "object", "additionalProperties": { "type": "number", "minimum": 0 } }
+    }, "additionalProperties": true },
+    "assets": { "type": "object", "additionalProperties": { "type": "array", "items": { "$ref": "#/$defs/asset" } } },
+    "objects": { "type": "array", "items": { "type": "object",
+      "properties": { "name": { "type": "string" }, "path": { "type": "string" },
+        "type": { "type": "string" }, "active": { "type": "boolean" },
+        "mesh": { "$ref": "#/$defs/reference" }, "material": { "$ref": "#/$defs/reference" },
+        "materials": { "$ref": "#/$defs/reference" }, "shader": { "$ref": "#/$defs/reference" },
+        "shaders": { "$ref": "#/$defs/reference" }, "texture": { "$ref": "#/$defs/reference" },
+        "textures": { "$ref": "#/$defs/reference" },
+        "animation": { "$ref": "#/$defs/reference" }, "controller": { "$ref": "#/$defs/reference" },
+        "particle_count": { "type": "integer", "minimum": 0 },
+        "particle_capacity": { "type": "integer", "minimum": 0 },
+        "screen_coverage": { "type": "number", "minimum": 0, "maximum": 1 },
+        "overlap_layers": { "type": "integer", "minimum": 0 },
+        "gpu_instancing_supported": { "type": "boolean" }, "gpu_instancing_enabled": { "type": "boolean" },
+        "srp_batcher_compatible": { "type": "boolean" } },
+      "additionalProperties": true } },
+    "performance": { "type": "object", "additionalProperties": { "type": "number", "minimum": 0 } },
+    "performance_evidence": { "type": "object", "properties": {
+      "source": { "type": "string" }, "device": { "type": "string" },
+      "build": { "type": "string" }, "capture": { "type": "string" }
+    }, "additionalProperties": true }
+  },
+  "additionalProperties": true
+}

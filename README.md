@@ -19,7 +19,7 @@ The goal is to make that experience useful through an AI-assisted workflow that 
 
 ## Current status
 
-The repository is an early working MVP. The reusable core contract, Codex adapter, naming-audit workflow, naming references, technical-art knowledge modules, and a platform-neutral scene-validation baseline are in place.
+The repository is an early working MVP for an AI technical-art assistant. It contains a reusable core contract, Codex adapter, naming-audit workflow, knowledge modules, and an optional engine-neutral snapshot validator for repeatable checks. Snapshot schema v2, asset checks, measured-budget checks, and CI validation support repository QA; they are not required to use the skill.
 
 Current coverage includes:
 
@@ -32,7 +32,7 @@ Current coverage includes:
 - scene-audit fundamentals, including scoped inventory, dependency integrity, hierarchy and ownership, cameras and lighting, render assets, geometry and visibility, GPU Instancing, SRP Batcher, physics/navigation, particle/VFX overdraw, performance evidence, and prioritized findings;
 - materials/shaders, UVs, baking/lightmaps, VFX/particles, LOD/culling/streaming, reflection sources, mesh processing, lighting/exposure, and repeatable asset validation.
 
-The knowledge base and workflows are intentionally incomplete. Additional depth, examples, and engine-specific pipelines are still needed. A small automated validation baseline exists, but the broader evaluation suite is still to be built.
+The knowledge base and workflows are intentionally incomplete. Additional depth and examples are still needed. Some knowledge sections include engine-specific guidance; these are scoped examples and must only be applied when the project uses that engine and pipeline.
 
 ## Skill assessment
 
@@ -41,9 +41,9 @@ The repository is currently a strong knowledge-first MVP:
 - **Coverage:** 13 populated technical-art modules now span texture maps, geometry and animation import, scene auditing, materials/shaders, UVs, baking/lightmaps, VFX, LOD/culling/streaming, reflection sources, mesh processing, lighting/exposure, and asset validation.
 - **Workflow quality:** the core contract consistently requires scoped analysis, dependency checks, explanation before repair, explicit assumptions, visual validation, and separation of technical facts from artistic judgment.
 - **Practical value:** the modules contain production-oriented decision rules, risk warnings, platform considerations, and validation checklists rather than only terminology.
-- **Current limitation:** the executable baseline validates normalized scene snapshots, not native Unity or Unreal scenes. Engine adapters, broader eval coverage, and CI policy checks are still needed for production adoption.
+- **Current limitation:** there is no engine integration that automatically gathers project data. The AI uses the project files and evidence available in the user's environment; the optional snapshot validator consumes data supplied by the user or another tool.
 
-The skill is ready for structured technical-art analysis, investigation plans, import reviews, and audit reports. A first executable path is now available through `tools/scene_validator.py`; the next maturity step is to connect real engine exporters to its snapshot contract and expand the fixture/eval matrix.
+The skill is intended for structured technical-art analysis, investigation plans, import reviews, and audit reports across engines. The snapshot schema and validator are optional repository QA utilities, separate from the AI reasoning workflow.
 
 ## Executable validation baseline
 
